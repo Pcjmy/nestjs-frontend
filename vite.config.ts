@@ -12,6 +12,17 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": pathResolve("src"),
+      "~bootstrap": "bootstrap",
+    },
+  },
+  server: {
+    port: 3000,
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/styles/variables";`,
+      },
     },
   },
 });

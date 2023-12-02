@@ -1,5 +1,12 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
+import { setupStore } from "./store/index";
 
-createApp(App).mount('#app')
+function bootstrap() {
+  const app = createApp(App);
+  setupStore(app);
+  app.mount("#app");
+}
+
+bootstrap();

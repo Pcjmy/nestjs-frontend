@@ -31,9 +31,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import axios from "@/utils/axios";
 
 export default defineComponent({
-  setup() {
+  async setup() {
+    const res = await axios.get("/user");
+    console.log("🚀 ~ file: index.vue:39 ~ setup ~ res:", res);
     return {};
   },
 });

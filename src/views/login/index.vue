@@ -1,42 +1,53 @@
 <template>
-  <div>
-    登录
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-    <button type="button" class="btn btn-link">Link</button>
-
-    <div class="dropdown">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+  <div
+    class="container d-flex justify-content-center align-items-center vh-100"
+  >
+    <div class="col-11 col-sm-8 col-lg-6 col-xl-4 col-xxl-4">
+      <form class="border shadow-sm rounded p-4">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">用户名：</label>
+          <input
+            type="email"
+            :class="['form-control']"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">密码：</label>
+          <input
+            type="password"
+            :class="['form-control']"
+            id="exampleInputPassword1"
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1">记住我</label>
+        </div>
+        <div class="d-flex flex-column align-items-center px-1">
+          <button type="submit" class="btn btn-primary w-100 mb-2 text-light">
+            登录
+          </button>
+          <router-link
+            to="/reg"
+            class="border rounded w-100 text-decoration-none text-center"
+          >
+            <button type="submit" class="btn">注册</button>
+          </router-link>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import axios from "@/utils/axios";
 
 export default defineComponent({
-  async setup() {
-    const res = await axios.get("/user");
-    console.log("🚀 ~ file: index.vue:39 ~ setup ~ res:", res);
+  setup() {
     return {};
   },
 });

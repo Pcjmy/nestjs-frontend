@@ -8,27 +8,37 @@
           <label for="exampleInputEmail1" class="form-label">用户名：</label>
           <input
             type="email"
-            :class="['form-control']"
+            :class="['form-control', { 'is-invalid': loginInfo.usernameMsg }]"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            v-model="loginInfo.username"
           />
-          <div class="invalid-feedback"></div>
+          <div class="invalid-feedback">
+            {{ loginInfo.usernameMsg }}
+          </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">密码：</label>
           <input
             type="password"
-            :class="['form-control']"
+            :class="['form-control', { 'is-invalid': loginInfo.passwordMsg }]"
             id="exampleInputPassword1"
+            v-model="loginInfo.password"
           />
-          <div class="invalid-feedback"></div>
+          <div class="invalid-feedback">
+            {{ loginInfo.passwordMsg }}
+          </div>
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1" />
           <label class="form-check-label" for="exampleCheck1">记住我</label>
         </div>
         <div class="d-flex flex-column align-items-center px-1">
-          <button type="submit" class="btn btn-primary w-100 mb-2 text-light">
+          <button
+            type="submit"
+            class="btn btn-primary w-100 mb-2 text-light"
+            @click="submit()"
+          >
             登录
           </button>
           <router-link
@@ -44,11 +54,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, computed } from "vue";
+import axios from "@/utils/axios";
 
 export default defineComponent({
   setup() {
-    return {};
+    const loginInfo = reactive({
+      username: "",
+      usernameMsg: computed(() => {
+        if (
+          loginInfo.username !== "" &&
+          !/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(loginInfo.username)
+        ) {
+          return "请输入正确的邮箱地址";
+        }
+        return "";
+      }),
+      password: "",
+      passwordMsg: computed(() => {
+        if (loginInfo.password !== "" && loginInfo.password.length < 6) {
+          return "密码的长度不能小于6位";
+        }
+        return "";
+      }),
+    });
+
+    const submit = () => {
+      console.log(loginInfo);
+      axios.post("/auth/login", loginInfo).then((res) => {
+        console.log(res);
+      });
+    };
+
+    return {
+      loginInfo,
+      submit,
+    };
   },
 });
 </script>

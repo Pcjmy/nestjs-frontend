@@ -55,10 +55,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive, computed } from "vue";
-import axios from "@/utils/axios";
+import { useRouter } from "vue-router";
+// import axios from "@/utils/axios";
 
 export default defineComponent({
   setup() {
+    // 获取路由实例
+    const router = useRouter();
+
     const loginInfo = reactive({
       username: "",
       usernameMsg: computed(() => {
@@ -81,9 +85,10 @@ export default defineComponent({
 
     const submit = () => {
       console.log(loginInfo);
-      axios.post("/auth/login", loginInfo).then((res) => {
-        console.log(res);
-      });
+      router.push("/home");
+      // axios.post("/auth/login", loginInfo).then((res) => {
+      //   console.log(res);
+      // });
     };
 
     return {

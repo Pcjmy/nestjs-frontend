@@ -1,0 +1,38 @@
+<template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <!-- 左侧菜单栏组件 -->
+        <SidebarNav />
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="container-fluid">
+            <!-- 头部导航 -->
+            <HeaderNav />
+            <!-- 主体内容 -->
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import SidebarNav from "@/components/SidebarNav.vue";
+import HeaderNav from "@/components/HeaderNav.vue";
+
+export default defineComponent({
+  components: {
+    SidebarNav,
+    HeaderNav,
+  },
+  setup() {
+    return {};
+  },
+});
+</script>
+
+<style scoped></style>

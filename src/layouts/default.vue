@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-3">
         <!-- 左侧菜单栏组件 -->
-        <SidebarNav />
+        <SidebarNav :menus="store.menus" />
       </div>
       <div class="col-9">
         <div class="row">
@@ -23,6 +23,7 @@
 import { defineComponent } from "vue";
 import SidebarNav from "@/components/SidebarNav.vue";
 import HeaderNav from "@/components/HeaderNav.vue";
+import { useMenusStore } from "@/store/menus";
 
 export default defineComponent({
   components: {
@@ -30,7 +31,10 @@ export default defineComponent({
     HeaderNav,
   },
   setup() {
-    return {};
+    const store = useMenusStore();
+    return {
+      store,
+    };
   },
 });
 </script>

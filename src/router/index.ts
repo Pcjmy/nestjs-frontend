@@ -1,4 +1,4 @@
-import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import { App } from "vue";
 
 const routes = [
@@ -8,7 +8,7 @@ const routes = [
   },
   {
     path: "/reg",
-    component: () => import("@/views/reg/index.vue"),
+    component: () => import("@/views/login/index.vue"),
   },
   // 内容页
   // 首页
@@ -20,6 +20,21 @@ const routes = [
       {
         path: "dashboard",
         component: () => import("@/views/dashboard/index.vue"),
+      },
+      {
+        name: "users",
+        path: "users",
+        component: () => import("@/views/users/index.vue"),
+      },
+      {
+        name: "menus",
+        path: "menus",
+        component: () => import("@/views/menus/index.vue"),
+      },
+      {
+        name: "roles",
+        path: "roles",
+        component: () => import("@/views/roles/index.vue"),
       },
     ],
   },
